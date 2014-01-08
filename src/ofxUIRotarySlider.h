@@ -186,7 +186,7 @@ public:
     
     void mouseMoved(int x, int y ) 
     {
-        if(rect->inside(x, y))
+        if(hitTest(x, y))
         {
             state = OFX_UI_STATE_OVER;         
         }    
@@ -214,7 +214,7 @@ public:
     
     void mousePressed(int x, int y, int button) 
     {
-        if(rect->inside(x, y))
+        if(hitTest(x, y))
         {
             hit = true; 
             state = OFX_UI_STATE_DOWN;     
@@ -227,6 +227,18 @@ public:
         }
         stateChange();         
     }
+	
+	bool hitTest (int x, int y)
+	{
+		float cx = rect->x + (rect->width / 2.0f);
+		float cy = rect->y + (rect->height / 2.0f);
+		float dx = x - cx;
+		float dy = y - cy;
+		float distance = sqrt(dx*dx + dy*dy);
+		
+		
+		return distance <= outerRadius && distance >= innerRadius;
+	}
     
     void mouseReleased(int x, int y, int button) 
     {
@@ -362,7 +374,10 @@ public:
     
 	void updateLabel()
 	{
-        label->setLabel(name + ": " + ofxUIToString(getScaledValue(),2)); 		
+		if (isLabelVisible)
+		{
+			label->setLabel(name + ": " + ofxUIToString(getScaledValue(),2));
+		}
 	}
 	
     void stateChange()

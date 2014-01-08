@@ -32,7 +32,7 @@ class ofxUILabel;
 class ofxUIWidgetWithLabel : public ofxUIWidget           
 {
 public:
-    ofxUIWidgetWithLabel() : ofxUIWidget() 
+    ofxUIWidgetWithLabel() : ofxUIWidget(), isLabelVisible(true)
     {        
  
     }
@@ -44,7 +44,7 @@ public:
         
     virtual bool hasLabel()
     {
-        return true; 
+        return isLabelVisible;
     }
     
     void setVisible(bool _visible)
@@ -53,6 +53,11 @@ public:
         ofxUIWidget *labelWidget = (ofxUIWidget *) label;
         labelWidget->setVisible(visible);        
     }
+	
+	void setLabelVisible(bool _visible)
+	{
+		isLabelVisible = _visible;
+	}
     
     virtual ofxUILabel* getLabelWidget()
     {
@@ -90,6 +95,7 @@ public:
     
 protected:
     ofxUILabel *label;
+	bool isLabelVisible;
 };
 
 #endif
