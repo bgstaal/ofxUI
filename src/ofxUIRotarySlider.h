@@ -144,9 +144,9 @@ public:
     virtual void drawFill()    
     {
         if(draw_fill)
-        {			
+        {
             ofxUIFill(); 
-            ofxUISetColor(color_fill); 
+            ofxUISetColor(color_fill);
             drawArcStrip(value); 
         }
     }
@@ -382,14 +382,7 @@ public:
 	
     void stateChange()
     {
-        if(value > 0) 
-        {
-            draw_fill = true; 
-        }
-        else 
-        {
-            draw_fill = false; 
-        }
+		draw_fill = true;
         
         switch (state) {
             case OFX_UI_STATE_NORMAL:

@@ -541,7 +541,7 @@ public:
         {            
             enabled = true;
             visible = true; 
-            EnableCallbacks();
+            EnableCallbacks(autoDraw, autoUpdate);
         }
 	}
 	
@@ -701,7 +701,7 @@ public:
 	}
         
 	virtual void touchCancelled(float x, float y, int id)
-	{		
+	{
         canvasTouchCancelled(x, y, id);
 	}
 	   
@@ -3065,11 +3065,29 @@ public:
     virtual void setAutoUpdate(bool _autoUpdate)
     {
         autoUpdate = _autoUpdate;
+		
+		if (autoUpdate)
+		{
+			enableAppUpdateCallback();
+		}
+		else
+		{
+			disableAppUpdateCallback();
+		}
     }
     
     virtual void setAutoDraw(bool _autoDraw)
     {
         autoDraw = _autoDraw;
+		
+		if (autoDraw)
+		{
+			enableAppDrawCallback();
+		}
+		else
+		{
+			disableAppDrawCallback();
+		}
     }
     
     virtual void setPosition(int x, int y)

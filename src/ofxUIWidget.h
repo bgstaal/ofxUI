@@ -272,7 +272,7 @@ public:
 
 	virtual void setDrawFill(bool _draw_fill)
 	{
-		draw_fill = _draw_fill; 
+		draw_fill = _draw_fill;
 	}
 	
 	virtual void setDrawFillHighLight(bool _draw_fill_highlight)

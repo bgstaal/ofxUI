@@ -45,10 +45,10 @@ class ofxUIAppCBGlue
 public:        
     ofBaseApp *app;
     
-    void EnableCallbacks()
+    void EnableCallbacks(bool autoDraw = true, bool autoUpdate = true)
 	{
-        enableAppDrawCallback();
-        enableAppUpdateCallback();
+        if (autoDraw) enableAppDrawCallback();
+        if (autoUpdate) enableAppUpdateCallback();
         enableAppExitCallback();
 #ifdef OFX_UI_TARGET_TOUCH
         enableTouchEventCallbacks();
